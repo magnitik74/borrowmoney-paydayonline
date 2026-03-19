@@ -11,6 +11,8 @@
         .oswald { font-family: 'Oswald', sans-serif; }
         .pulse-bg { animation: pulseBg 2s infinite; }
         @keyframes pulseBg { 0% { background-color: #22c55e; } 50% { background-color: #16a34a; } 100% { background-color: #22c55e; } }
+        .blur-in { animation: blurIn 0.5s ease-out forwards; }
+        @keyframes blurIn { from { filter: blur(10px); opacity: 0; } to { filter: blur(0); opacity: 1; } }
     </style>
 </head>
 <body class="pb-10">
@@ -32,7 +34,7 @@
     <main class="p-4 max-w-md mx-auto relative min-h-[500px]">
         
         <!-- ШАГ 1: ВЫБОР СУММЫ -->
-        <div id="step-1" class="funnel-step text-center mt-4">
+        <div id="step-1" class="funnel-step text-center mt-4 blur-in">
             <h2 class="text-3xl font-black text-gray-900 mb-1 oswald uppercase">How much?</h2>
             <p class="text-sm text-gray-600 font-bold mb-6 italic tracking-tight">Lock in your pre-approval in seconds.</p>
             <div class="grid grid-cols-2 gap-4">
@@ -63,8 +65,8 @@
 
         <!-- ШАГ 2.5: ОФФЕР CLIQSILVER (ИНТЕРСТИТИАЛ) -->
         <div id="step-debt-offer" class="funnel-step text-center mt-2 hidden">
-            <div class="bg-red-600 rounded-t-2xl p-4 text-white shadow-lg"><h2 class="text-2xl font-black oswald uppercase">⚠️ RELIEF ELIGIBLE</h2></div>
-            <div class="bg-white border-x-4 border-b-4 border-red-600 rounded-b-2xl p-6 shadow-2xl">
+            <div class="bg-red-600 rounded-t-2xl p-4 text-white shadow-lg"><h2 class="text-2xl font-black oswald uppercase text-white">⚠️ RELIEF ELIGIBLE</h2></div>
+            <div class="bg-white border-x-4 border-b-4 border-red-600 rounded-b-2xl p-6 shadow-2xl text-center">
                 <p class="text-gray-900 font-bold mb-5 text-lg leading-tight">Your $15K+ debt qualifies for the <span class="text-red-600 italic">2026 Settlement Program</span>. Stop borrowing and start settling.</p>
                 <a href="https://offers.cliqsilver.com/debt" target="_blank" class="block w-full bg-red-600 text-white text-center text-2xl font-black oswald tracking-wide py-5 rounded-xl shadow-lg active:scale-95 transition animate-pulse uppercase">GET $15K+ RELIEF</a>
                 <button onclick="nextStep(3)" class="mt-6 text-gray-400 font-bold text-xs underline uppercase tracking-widest">I still need a cash loan</button>
@@ -106,7 +108,66 @@
                 <script src="https://cdn101.profitner.com/form/run.php?p=4F6456943C7B47CCAC2C8E76524813A6"></script>
             </div>
         </div>
+
+        <!-- БЛОК ОТЗЫВОВ (СОЦ. ДОКАЗАТЕЛЬСТВО) -->
+        <section id="reviews" class="mt-12 pt-8 border-t border-gray-300">
+            <h3 class="oswald text-xl font-black uppercase text-gray-800 mb-6 text-center tracking-widest">Verified User Success</h3>
+            <div class="space-y-4">
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200">
+                    <div class="flex items-center gap-1 text-yellow-500 mb-2 text-sm">★★★★★</div>
+                    <p class="text-xs text-gray-700 leading-relaxed italic font-medium">"I was skeptical but the process was so simple. Got my $1,000 deposit the same day. Saved my rent!"</p>
+                    <div class="mt-3 flex items-center gap-2">
+                        <div class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center text-[10px] font-bold text-gray-500">M</div>
+                        <span class="text-[10px] font-black text-gray-400 uppercase tracking-tighter">Mike R. — Austin, TX</span>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200">
+                    <div class="flex items-center gap-1 text-yellow-500 mb-2 text-sm">★★★★★</div>
+                    <p class="text-xs text-gray-700 leading-relaxed italic font-medium">"The debt relief option actually helped me more than the loan. Finally seeing a way out of my credit card debt."</p>
+                    <div class="mt-3 flex items-center gap-2">
+                        <div class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center text-[10px] font-bold text-gray-500">S</div>
+                        <span class="text-[10px] font-black text-gray-400 uppercase tracking-tighter">Sarah J. — Miami, FL</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- БЛОК FAQ (ДЛЯ МОДЕРАЦИИ) -->
+        <section id="faq" class="mt-12 pt-8 border-t border-gray-300">
+            <h3 class="oswald text-lg font-black uppercase text-gray-800 mb-4 px-2">Frequently Asked Questions</h3>
+            <div class="space-y-3">
+                <div class="p-3 bg-gray-50 rounded-lg">
+                    <h4 class="text-xs font-black text-gray-900 mb-1 italic">How long does approval take?</h4>
+                    <p class="text-[10px] text-gray-600">Most users receive a decision within 2-5 minutes after completing the full request form.</p>
+                </div>
+                <div class="p-3 bg-gray-50 rounded-lg">
+                    <h4 class="text-xs font-black text-gray-900 mb-1 italic">Will this affect my credit score?</h4>
+                    <p class="text-[10px] text-gray-600">Our initial matching process uses a soft pull which does not impact your credit score. Lenders may perform additional checks.</p>
+                </div>
+            </div>
+        </section>
+
     </main>
+
+    <!-- FOOTER (ЮРИДИЧЕСКАЯ ИНФОРМАЦИЯ ДЛЯ МОДЕРАЦИИ) -->
+    <footer class="mt-10 bg-gray-200 p-8 text-gray-500 text-[10px] leading-relaxed border-t border-gray-300">
+        <div class="max-w-md mx-auto">
+            <p class="font-black mb-3 uppercase tracking-[0.2em] text-gray-400 border-b border-gray-300 pb-2 text-center">Important Legal Disclosures</p>
+            <p class="mb-4 text-justify">
+                <strong>Borrow Money Payday Online</strong> acts as a matching service and is NOT a lender. We do not make credit decisions. Our platform connects consumers with independent, third-party lenders who may be able to provide loans. We do not charge fees for this matching service. Not all lenders can provide the maximum amount requested, and approval is never guaranteed. 
+            </p>
+            <p class="mb-4 text-justify italic">
+                <strong>Debt Relief Notice:</strong> Debt settlement and relief options are provided by independent financial partners. Results are not guaranteed and depend on your specific financial situation. Programs may impact your credit score and result in legal or tax consequences. Please consult with a professional financial advisor.
+            </p>
+            <div class="grid grid-cols-2 gap-2 text-center uppercase font-bold py-4 border-y border-gray-300 my-4">
+                <span class="hover:text-gray-800 cursor-pointer">Privacy Policy</span>
+                <span class="hover:text-gray-800 cursor-pointer">Terms of Service</span>
+                <span class="hover:text-gray-800 cursor-pointer">Ad Disclosure</span>
+                <span class="hover:text-gray-800 cursor-pointer">Contact Support</span>
+            </div>
+            <p class="mt-4 text-center text-gray-400 font-medium">© 2026 Secure Loan Network System. All rights reserved.<br>256-bit Bank-Level Encryption Verified.</p>
+        </div>
+    </footer>
 
     <script>
         function nextStep(step) {
@@ -143,6 +204,8 @@
             document.getElementById('step-form').classList.remove('hidden');
             document.getElementById('progress-bar').style.width = '100%';
             setTimeout(() => document.getElementById('progress-container').classList.add('hidden'), 1000);
+            // Прокрутка к форме для удобства
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>

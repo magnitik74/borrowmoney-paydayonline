@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Secure Loan Request | Official Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        .oswald { font-family: 'Oswald', sans-serif; }
+        .pulse-bg { animation: pulseBg 2s infinite; }
+        @keyframes pulseBg { 0% { background-color: #22c55e; } 50% { background-color: #16a34a; } 100% { background-color: #22c55e; } }
+    </style>
+</head>
+<body class="pb-10">
+
+    <!-- Header (Элемент доверия) -->
+    <header class="bg-[#111827] text-white p-4 shadow-lg sticky top-0 z-40 flex justify-between items-center border-b-[3px] border-green-500">
+        <div class="flex items-center gap-2">
+            <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8V7a4 4 0 00-8 0v4h8z"></path></svg>
+            <h1 class="text-xl font-black oswald tracking-wide uppercase">Secure Request</h1>
+        </div>
+        <div class="bg-green-500 text-black text-[10px] font-black uppercase px-2 py-1 rounded">256-bit SSL</div>
+    </header>
+
+    <!-- Индикатор прогресса -->
+    <div id="progress-container" class="w-full bg-gray-300 h-2 shadow-inner">
+        <div id="progress-bar" class="bg-green-500 h-2 w-[20%] transition-all duration-500 pulse-bg relative"></div>
+    </div>
+
+    <main class="p-4 max-w-md mx-auto relative min-h-[500px]">
+        
+        <!-- ШАГ 1: ВЫБОР СУММЫ -->
+        <div id="step-1" class="funnel-step text-center mt-4">
+            <h2 class="text-3xl font-black text-gray-900 mb-1 oswald uppercase">How much?</h2>
+            <p class="text-sm text-gray-600 font-bold mb-6 italic tracking-tight">Lock in your pre-approval in seconds.</p>
+            <div class="grid grid-cols-2 gap-4">
+                <button onclick="nextStep(2)" class="bg-white border-2 border-gray-300 rounded-2xl p-4 text-lg font-black text-gray-800 shadow-md active:scale-95 transition">$0 - $500</button>
+                <button onclick="nextStep(2)" class="bg-white border-2 border-gray-300 rounded-2xl p-4 text-lg font-black text-gray-800 shadow-md active:scale-95 transition">$501 - $1,000</button>
+                <button onclick="nextStep(2)" class="bg-white border-2 border-gray-300 rounded-2xl p-4 text-lg font-black text-gray-800 shadow-md active:scale-95 transition">$1,001 - $2,500</button>
+                <button onclick="nextStep(2)" class="bg-white border-2 border-gray-300 rounded-2xl p-4 text-lg font-black text-gray-800 shadow-md active:scale-95 transition">$2,501 - $5,000+</button>
+            </div>
+            <div class="mt-8 bg-green-100 text-green-800 text-xs font-bold p-3 rounded-lg flex items-center justify-center gap-2 shadow-sm border border-green-200 uppercase">
+                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                High Approval System Active
+            </div>
+        </div>
+
+        <!-- ШАГ 2: ФИЛЬТР ПО ДОЛГАМ (15K ОФФЕР) -->
+        <div id="step-2" class="funnel-step text-center mt-4 hidden">
+            <h2 class="text-3xl font-black text-gray-900 mb-1 oswald uppercase tracking-tighter leading-none">Owe over $15,000?</h2>
+            <p class="text-sm text-gray-600 font-bold mb-6">Total credit card or personal loan debt?</p>
+            <div class="flex flex-col gap-4">
+                <button onclick="checkDebt('yes')" class="bg-red-50 border-2 border-red-500 rounded-xl p-6 text-xl font-black text-red-700 shadow-md flex justify-between items-center active:scale-95 transition">
+                    <span>⚠️ YES, OVER $15,000</span> <span class="text-red-600">➔</span>
+                </button>
+                <button onclick="checkDebt('no')" class="bg-white border-2 border-gray-300 rounded-xl p-6 text-xl font-black text-gray-800 shadow-sm flex justify-between items-center active:scale-95 transition">
+                    <span>NO, UNDER $15,000</span> <span class="text-green-500">➔</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ШАГ 2.5: ОФФЕР CLIQSILVER (ИНТЕРСТИТИАЛ) -->
+        <div id="step-debt-offer" class="funnel-step text-center mt-2 hidden">
+            <div class="bg-red-600 rounded-t-2xl p-4 text-white shadow-lg"><h2 class="text-2xl font-black oswald uppercase">⚠️ RELIEF ELIGIBLE</h2></div>
+            <div class="bg-white border-x-4 border-b-4 border-red-600 rounded-b-2xl p-6 shadow-2xl">
+                <p class="text-gray-900 font-bold mb-5 text-lg leading-tight">Your $15K+ debt qualifies for the <span class="text-red-600 italic">2026 Settlement Program</span>. Stop borrowing and start settling.</p>
+                <a href="https://offers.cliqsilver.com/debt" target="_blank" class="block w-full bg-red-600 text-white text-center text-2xl font-black oswald tracking-wide py-5 rounded-xl shadow-lg active:scale-95 transition animate-pulse uppercase">GET $15K+ RELIEF</a>
+                <button onclick="nextStep(3)" class="mt-6 text-gray-400 font-bold text-xs underline uppercase tracking-widest">I still need a cash loan</button>
+            </div>
+        </div>
+
+        <!-- ШАГ 3: ВЫБОР СКОРОСТИ -->
+        <div id="step-3" class="funnel-step text-center mt-4 hidden">
+            <h2 class="text-3xl font-black text-gray-900 mb-1 oswald uppercase leading-none mb-2">How fast?</h2>
+            <p class="text-sm text-green-600 font-black mb-6 uppercase tracking-widest">FUNDS RESERVED FOR DISBURSEMENT</p>
+            <div class="flex flex-col gap-3">
+                <button onclick="nextStep(4)" class="bg-green-50 border-2 border-green-500 rounded-xl p-5 text-xl font-black text-gray-800 shadow-md flex justify-between items-center active:scale-95 transition"><span>⚡ ASAP (Today)</span> <span class="text-green-600">➔</span></button>
+                <button onclick="nextStep(4)" class="bg-white border-2 border-gray-300 rounded-xl p-5 text-xl font-black text-gray-800 shadow-sm flex justify-between items-center active:scale-95 transition"><span>📅 Tomorrow</span> <span class="text-green-500">➔</span></button>
+            </div>
+        </div>
+
+        <!-- ШАГ 4: КУДА ОТПРАВИТЬ -->
+        <div id="step-4" class="funnel-step text-center mt-4 hidden">
+            <h2 class="text-3xl font-black text-gray-900 mb-1 oswald uppercase">Send funds to?</h2>
+            <p class="text-sm text-gray-600 font-bold mb-6 italic tracking-tight">Secure 256-bit encrypted transfer.</p>
+            <div class="flex flex-col gap-3">
+                <button onclick="nextStep(5)" class="bg-white border-2 border-gray-300 rounded-xl p-5 text-xl font-black text-gray-800 shadow-sm flex justify-between items-center active:scale-95 transition"><span>🏦 Direct Bank Deposit</span> <span class="text-green-500">➔</span></button>
+                <button onclick="nextStep(5)" class="bg-white border-2 border-gray-300 rounded-xl p-5 text-xl font-black text-gray-800 shadow-sm flex justify-between items-center active:scale-95 transition"><span>💳 Debit Card</span> <span class="text-green-500">➔</span></button>
+            </div>
+        </div>
+
+        <!-- ШАГ 5: ЭКРАН ЗАГРУЗКИ (ПРОГРЕВ) -->
+        <div id="step-loading" class="funnel-step text-center mt-12 hidden">
+            <div class="animate-spin rounded-full h-20 w-20 border-t-8 border-green-500 mx-auto mb-6"></div>
+            <h2 class="text-2xl font-black text-gray-900 oswald uppercase">System Analysis...</h2>
+            <p id="loading-status" class="text-lg text-green-600 font-bold mt-2">Connecting to lenders...</p>
+        </div>
+
+        <!-- ШАГ 6: ФИНАЛЬНАЯ ФОРМА (PROFITNER) -->
+        <div id="step-form" class="funnel-step hidden">
+            <div class="bg-green-600 text-white font-black p-4 rounded-xl mb-6 text-center shadow-lg uppercase tracking-wider">🔥 MATCH FOUND! COMPLETE FORM</div>
+            <div class="bg-white rounded-2xl shadow-2xl border-2 border-gray-200 p-0 overflow-hidden min-h-[600px] w-full">
+                <!-- PROFITNER FORM RUN -->
+                <script src="https://cdn101.profitner.com/form/run.php?p=4F6456943C7B47CCAC2C8E76524813A6"></script>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function nextStep(step) {
+            document.querySelectorAll('.funnel-step').forEach(el => el.classList.add('hidden'));
+            if (step === 5) {
+                document.getElementById('step-loading').classList.remove('hidden');
+                document.getElementById('progress-bar').style.width = '90%';
+                let i = 0; 
+                const s = ["Securing funds...", "Bypassing FICO...", "Matching lenders...", "SUCCESS!"];
+                const interval = setInterval(() => { 
+                    if (i < s.length) {
+                        document.getElementById('loading-status').innerText = s[i++];
+                    } else { 
+                        clearInterval(interval); 
+                        showFinal(); 
+                    } 
+                }, 1000);
+            } else {
+                document.getElementById('step-' + step).classList.remove('hidden');
+                document.getElementById('progress-bar').style.width = ((step-1)*25)+'%';
+            }
+        }
+        function checkDebt(a) {
+            if (a === 'yes') { 
+                document.querySelectorAll('.funnel-step').forEach(el => el.classList.add('hidden'));
+                document.getElementById('step-debt-offer').classList.remove('hidden'); 
+                document.getElementById('progress-bar').style.width = '40%'; 
+            } else {
+                nextStep(3);
+            }
+        }
+        function showFinal() {
+            document.querySelectorAll('.funnel-step').forEach(el => el.classList.add('hidden'));
+            document.getElementById('step-form').classList.remove('hidden');
+            document.getElementById('progress-bar').style.width = '100%';
+            setTimeout(() => document.getElementById('progress-container').classList.add('hidden'), 1000);
+        }
+    </script>
+</body>
+</html>
